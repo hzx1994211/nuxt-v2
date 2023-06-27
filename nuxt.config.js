@@ -114,7 +114,8 @@ export default {
         use: [
           { loader: "svg-sprite-loader", options: { symbolId: "icon-[name]" } }
         ]
-      })
+      }),
+      config.resolve.alias['@ant-design/icons/lib/dist$'] = path.resolve(__dirname, './plugins/antd-icons.js') // 引入需要的
     },
     babel: {
       plugins: [
