@@ -27,6 +27,7 @@
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.2.1",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-import": "^1.13.6",
     "cross-env": "^7.0.3",
     "eslint": "^8.43.0",
     "eslint-config-standard": "^17.1.0",

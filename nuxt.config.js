@@ -36,7 +36,6 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'ant-design-vue/dist/antd.css',
     'video.js/dist/video-js.css',
     {
       src: '@/assets/style/index.scss',
@@ -47,17 +46,12 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/antd-ui',
-    {
-      src: '~plugins/videoPlayer',
-      ssr: false
-    },
     '@/plugins/axios.js',
     '@/plugins/request.js',
     '@/plugins/api.js',
-    { src: '@/plugins/icons', ssr: false }
-
-
+    { src: '@/plugins/icons', ssr: false },
+    { src: '@/plugins/antd-ui',mode: false },
+    { src: '~plugins/videoPlayer',ssr: false },
   ],
   env:{
     NODE_ENV: env[process.env.NODE_ENV].NODE_ENV,
@@ -121,9 +115,27 @@ export default {
           { loader: "svg-sprite-loader", options: { symbolId: "icon-[name]" } }
         ]
       })
-    }
+    },
+    babel: {
+      plugins: [
+        [
+          'import',
+          {
+            libraryName: 'ant-design-vue',
+            libraryDirectory: 'es', 
+            // 选择子目录 例如 es 表示 ant-design-vue/es/component
+            // lib 表示 ant-design-vue/lib/component
+            
+            style: 'css' 
+            // 默认不使用该选项，即不导入样式 , 注意 ant-design-vue 使用 js 文件引入样式
+            // true 表示 import  'ant-design-vue/es/component/style' 
+            // 'css' 表示 import 'ant-design-vue/es/component/style/css' 
+          }
+        ]
+      ]
+    },
+    transpile: [/ant-design-vue/],
 
+  },
 
-
-  }
 }

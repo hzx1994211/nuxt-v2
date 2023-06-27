@@ -1,19 +1,20 @@
 <template>
   <div>
-    <Tutorial/>
     <nuxt-link :to="`home`" class="ssss">{{ $t('menu.home') }}</nuxt-link>
     <nuxt-link :to="`demo?id=${1}`">demo</nuxt-link>
-    <svg-icon name="huang_2_hong_1" :size="12"/>
+    <svg-icon name="huang_2_hong_1" :size="12" />
+
+    <a href="javascript:;" @click="setLang('zh')">简体中文</a>
+    <a href="javascript:;" @click="setLang('en')">English</a>
   </div>
 </template>
 
 <script>
-import videoPlayer from '@/components/videoPlayer'
 export default {
   name: 'IndexPage',
   data() {
     return {
-      text:''
+      text: ''
     }
   },
   head() {
@@ -21,21 +22,23 @@ export default {
       title: '奥默科技'
     }
   },
-  components:{
-    videoPlayer,
+  components: {
+
   },
   mounted() {
 
   },
-  methods:{
-
+  methods: {
+    setLang(lang) {
+      var that = this;
+      that.$i18n.locale = lang;
+    },
   }
 }
 </script>
 <style lang="scss" scoped>
-.ssss{
+.ssss {
   color: $pdcolor;
 }
-  
 </style>
 

@@ -1,7 +1,9 @@
 import en_us from '../locales/en.js'
 import zh_cn from '../locales/zh.js'
+import Vue from 'vue'
+import VueI18n from 'vue-i18n'
 
-
+Vue.use(VueI18n)
 const i18n = {
   locales: ['en', 'zh'],//有多少地区的语言就添加多少种
   defaultLocale: 'zh',//默认的地区语言
@@ -16,3 +18,6 @@ const i18n = {
 }
 
 export default i18n
+
+
+
