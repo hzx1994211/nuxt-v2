@@ -1,7 +1,9 @@
 <template>
   <div>
-    <Tutorial />
-    <!-- <videoPlayer src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"/> -->
+    <Tutorial/>
+    <nuxt-link :to="`home`" class="ssss">{{ $t('menu.home') }}</nuxt-link>
+    <nuxt-link :to="`demo?id=${1}`">demo</nuxt-link>
+    <svg-icon name="huang_2_hong_1" :size="12"/>
   </div>
 </template>
 
@@ -11,7 +13,7 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      text: ''
+      text:''
     }
   },
   head() {
@@ -19,15 +21,21 @@ export default {
       title: '奥默科技'
     }
   },
-  components: {
+  components:{
     videoPlayer,
   },
   mounted() {
 
   },
-  methods: {
+  methods:{
 
   }
 }
 </script>
+<style lang="scss" scoped>
+.ssss{
+  color: $pdcolor;
+}
+  
+</style>
 

@@ -1,7 +1,7 @@
 <template>
-  <aside class="sidebar">
-    <span>侧边栏</span>
-  </aside>
+  <div>
+    测试
+  </div>
 </template>
 <script>
   export default {
@@ -14,17 +14,18 @@
       };
     },
     watch: {},
-    created() {},
+    created() {
+      console.log(this.$route);
+    },
     beforeMount() {},
-    mounted() {},
+    mounted() {
+      
+
+    },
     methods: {},
     computed: {}
   }
 </script>
 <style lang='scss' scoped>
-.sidebar{
-  width: 210PX;
 
-  height: calc(100vh - 50PX);
-}
 </style>

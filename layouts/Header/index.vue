@@ -17,6 +17,6 @@ export default {
 <style lang='scss' scoped>
 .header{
   height: 50PX;
-  background-color: red;
+  box-shadow: 0px 1PX 5PX 1PX rgba(0,0,0,0.2);
 }
 </style>

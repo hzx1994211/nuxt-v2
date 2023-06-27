@@ -43,6 +43,7 @@
   display: flex;
   .content{
     width: calc(100vw - 210px);
+    background: #EEF0F4;
   }
 }
   .marginTop{

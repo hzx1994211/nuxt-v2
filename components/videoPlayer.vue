@@ -1,6 +1,6 @@
 <template>
   <section class="vueVideo">
-    <div v-video-player:myVideoPlayer="playerOptions" ref="videoPlayer" :muted="false"
+    <div v-video-player:myVideoPlayer="playerOptions" ref="videoPlayer"
       class="video-player-box video-player vjs-custom-skin" @play="onPlayerPlay($event)" @pause="onPlayerPause($event)"
       @ended="onPlayerEnded($event)" @loadeddata="onPlayerLoadeddata($event)" @waiting="onPlayerWaiting($event)"
       @playing="onPlayerPlaying($event)" @timeupdate="onPlayerTimeupdate($event)" @canplay="onPlayerCanplay($event)"
@@ -59,22 +59,17 @@ export default {
           remainingTimeDisplay: false, // 剩下时间
           fullscreenToggle: true, //全屏按钮
           //   currentTimeDisplay: true, // 当前时间
-          volumeControl: true, // 声音控制键
+          volumeControl: false, // 声音控制键
           playToggle: true, // 暂停和播放键
           progressControl: true, // 进度条
         },
       }
     }
   },
-  // computed:{
-  //   player() {
-  //     return this.$refs.videoPlayer
-  //   }
-  // },  
+ 
   mounted() {
     nextTick(async () => {
       console.log(this.myVideoPlayer, '----myVideoPlayer');
-
     })
   },
   methods: {
@@ -127,10 +122,12 @@ export default {
 </script>
  
 <style lang="scss" scoped>
-.vueVideo{
+ .vueVideo {
   width: calc(100vw - 210px);
   height: 50%;
+  
 }
+
 ::v-deep .vjs-progress-control {
   visibility: hidden;
 }
@@ -142,4 +139,5 @@ export default {
 ::v-deep .vjs-time-control {
   visibility: hidden;
 }
+
 </style>

@@ -38,6 +38,7 @@
     "node-sass": "^8.0.0",
     "postcss-px-to-viewport-8-plugin": "^1.2.2",
     "sass": "^1.63.6",
-    "sass-loader": "^10.4.1"
+    "sass-loader": "^10.4.1",
+    "svg-sprite-loader": "^6.0.11"
   }
 }

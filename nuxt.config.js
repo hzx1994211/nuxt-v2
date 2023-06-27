@@ -1,5 +1,7 @@
 import i18n from './plugins/i18n'
 import env from './env'
+
+const path = require('path')
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -53,6 +55,8 @@ export default {
     '@/plugins/axios.js',
     '@/plugins/request.js',
     '@/plugins/api.js',
+    { src: '@/plugins/icons', ssr: false }
+
 
   ],
   env:{
@@ -70,15 +74,15 @@ export default {
     [
       '@nuxtjs/i18n',
       i18n,
-      '@nuxtjs/style-resources'
     ],
+    '@nuxtjs/style-resources',
     '@nuxtjs/axios',
   ],
   // 手动配置@nuxtjs/style-resources
   styleResources: {
     scss: [
       // 在这里不能使用路径别名 ～ 和 @
-      './assets/style/common.scss'
+      './assets/style/index.scss'
     ]
   },
 
@@ -105,6 +109,20 @@ export default {
         },
       },
     },
+    extend (config, ctx) {
+      // ...
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+      svgRule.exclude = [path.resolve(__dirname, 'assets/svg')]
+      // Includes /icons/svg for svg-sprite-loader
+      config.module.rules.push({
+        test: /\.svg$/,
+        include: [path.resolve(__dirname, 'assets/svg')],
+        use: [
+          { loader: "svg-sprite-loader", options: { symbolId: "icon-[name]" } }
+        ]
+      })
+    }
+
 
 
   }
