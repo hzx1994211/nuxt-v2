@@ -43,17 +43,29 @@ export default {
     }
 
   ],
-
+  router: {
+    middleware: 'i18n'
+  },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/axios.js',
     '@/plugins/request.js',
     '@/plugins/api.js',
-    { src: '@/plugins/icons', ssr: false },
-    { src: '@/plugins/antd-ui',mode: false },
-    { src: '~plugins/videoPlayer',ssr: false },
+    '~/plugins/i18n.js',
+    {
+      src: '@/plugins/icons',
+      ssr: false
+    },
+    {
+      src: '@/plugins/antd-ui',
+      mode: false
+    },
+    {
+      src: '~plugins/videoPlayer',
+      ssr: false
+    },
   ],
-  env:{
+  env: {
     NODE_ENV: env[process.env.NODE_ENV].NODE_ENV,
     API_URL: env[process.env.NODE_ENV].API_URL,
   },
@@ -65,12 +77,9 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    [
-      '@nuxtjs/i18n',
-      i18n,
-    ],
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
   // 手动配置@nuxtjs/style-resources
   styleResources: {
@@ -103,19 +112,22 @@ export default {
         },
       },
     },
-    extend (config, ctx) {
+    extend(config, ctx) {
       // ...
       const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
       svgRule.exclude = [path.resolve(__dirname, 'assets/svg')]
       // Includes /icons/svg for svg-sprite-loader
       config.module.rules.push({
-        test: /\.svg$/,
-        include: [path.resolve(__dirname, 'assets/svg')],
-        use: [
-          { loader: "svg-sprite-loader", options: { symbolId: "icon-[name]" } }
-        ]
-      }),
-      config.resolve.alias['@ant-design/icons/lib/dist$'] = path.resolve(__dirname, './plugins/antd-icons.js') // 引入需要的
+          test: /\.svg$/,
+          include: [path.resolve(__dirname, 'assets/svg')],
+          use: [{
+            loader: "svg-sprite-loader",
+            options: {
+              symbolId: "icon-[name]"
+            }
+          }]
+        }),
+        config.resolve.alias['@ant-design/icons/lib/dist$'] = path.resolve(__dirname, './plugins/antd-icons.js') // 引入需要的
     },
     babel: {
       plugins: [
@@ -123,11 +135,11 @@ export default {
           'import',
           {
             libraryName: 'ant-design-vue',
-            libraryDirectory: 'es', 
+            libraryDirectory: 'es',
             // 选择子目录 例如 es 表示 ant-design-vue/es/component
             // lib 表示 ant-design-vue/lib/component
-            
-            style: 'css' 
+
+            style: 'css'
             // 默认不使用该选项，即不导入样式 , 注意 ant-design-vue 使用 js 文件引入样式
             // true 表示 import  'ant-design-vue/es/component/style' 
             // 'css' 表示 import 'ant-design-vue/es/component/style/css' 
